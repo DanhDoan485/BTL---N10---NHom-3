@@ -63,21 +63,23 @@ class Da_thuc{
 
     
     friend std::ostream& operator<<(std::ostream& os, Da_thuc& dt){
-       auto temp = dt.head;
-       if(!temp){
-        os << "0";
-        return os;
-       }
-        while(temp){
-            if (temp != dt.head) {
-                os << (temp->he_so > 0 ? "+" : "");
+        auto temp = dt.head;
+        if (!temp) {
+            os << "0";
+            return os;
             }
-            os << temp->he_so << "x^" << temp->b_ac;
-               temp = temp -> next;
-        }
-        return os;
+            bool first = true;
+        while (temp) {
+            if (!first) {
+                os << (temp ->he_so > 0 ? "+" : "");
+                } else {
+                    first = false;
+                    }
+        os << temp->he_so << "x^" << temp ->b_ac;
+        temp = temp->next;
     }
-
+    return os;
+}
     //Tính biểu thức tại một điểm
     double evulation(int x){
         double result = 0;
@@ -101,7 +103,7 @@ class Da_thuc{
                 result.input(t2 ->he_so, t2 ->b_ac);
                 t2 = t2 ->next;
             }else{
-                result.input(t1 ->he_so + t2->b_ac, t1 ->b_ac);
+                result.input(t1 ->he_so + t2->he_so, t1 ->b_ac);
                 t1 = t1 ->next;
                 t2 = t2 ->next;
             }
@@ -118,10 +120,10 @@ class Da_thuc{
                 result.input(t1 ->he_so, t1 ->b_ac);
                 t1 = t1 ->next;
             }else if(t2 && (!t1 || t2 ->b_ac > t1 ->b_ac)){
-                result.input(t2 ->he_so, t2 ->b_ac);
+                result.input(-t2 ->he_so, t2 ->b_ac);
                 t2 = t2 ->next;
             }else{
-                result.input(t1 ->he_so - t2->b_ac, t1 ->b_ac);
+                result.input(t1 ->he_so - t2->he_so, t1 ->b_ac);
                 t1 = t1 ->next;
                 t2 = t2 ->next;
             }
