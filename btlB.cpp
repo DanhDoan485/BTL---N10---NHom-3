@@ -95,7 +95,7 @@ class Da_thuc{
         auto t2 = other.head;
         while(t1 || t2){
             if(t1 && (!t2 || t1 -> b_ac > t2->b_ac)){
-                result.input(t1 ->he_so, t1 ->he_so);
+                result.input(t1 ->he_so, t1 ->b_ac);
                 t1 = t1 ->next;
             }else if(t2 && (!t1 || t2 ->b_ac > t1 ->b_ac)){
                 result.input(t2 ->he_so, t2 ->b_ac);
@@ -115,7 +115,7 @@ class Da_thuc{
         auto t2 = other.head;
         while(t1 || t2){
             if(t1 && (!t2 || t1 -> b_ac > t2->b_ac)){
-                result.input(t1 ->he_so, t1 ->he_so);
+                result.input(t1 ->he_so, t1 ->b_ac);
                 t1 = t1 ->next;
             }else if(t2 && (!t1 || t2 ->b_ac > t1 ->b_ac)){
                 result.input(t2 ->he_so, t2 ->b_ac);
