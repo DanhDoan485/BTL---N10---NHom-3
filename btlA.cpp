@@ -10,7 +10,7 @@ class Quan_li{
         std::string name;
         int date, month ,year;
     public:
-         Quan_li(int MSV = 0, double point = 0.0, std::string name = " ", int date = 0, int month = 0, int year= 0): MSV(MSV), point(point), name(name), date(date), month(month), year(year){}
+         Quan_li(int MSV = 0, double point = 0.0, std::string name = "", int date = 0, int month = 0, int year= 0): MSV(MSV), point(point), name(name), date(date), month(month), year(year){}
          
          friend std::istream& operator>>(std::istream &is, Quan_li &ql){
             std::cout << "-Nhap ma sinh vien: ";
@@ -32,9 +32,10 @@ class Quan_li{
             return os;
             }
         
-        void displaY() const{
-            std::cout << MSV << " " << " " << name << " " << date << "/" << month << "/" << year;
-        }
+        Quan_li displaY() const{
+            std::cout << "MSV:" << MSV << "-" << "Ten:" <<  name << "-" << "Ngay sinh:" << date << "/" << month << "/" << year << "-" << "Diem:" << point << std::endl;
+            return *this;
+          }
 
         double getPoint() const {
              return point;
@@ -127,7 +128,7 @@ public:
     }
 
    void themSinhVien() {
-    int ma, tuoi;
+    int ma, ngay, thang ,nam;
     float diem;
     std::string ten;
 
@@ -136,13 +137,18 @@ public:
     std::cout << "Nhap ten: ";
     std::cin.ignore();
     std::getline(std::cin, ten);
-    std::cout << "Nhap tuoi: ";
-    std::cin >> tuoi;
+    std::cout << "Nhap ngay sinh: \n";
+    std::cout << "Ngay: ";
+    std::cin >> ngay;
+    std::cout << "Thang: ";
+    std::cin >> thang;
+    std::cout << "Nam: ";
+    std::cin >> nam;
     std::cout << "Nhap diem: ";
     std::cin >> diem;
 
     // Khởi tạo đối tượng Quan_li với giá trị mặc định cho ngày/tháng/năm
-    Quan_li sv(ma, diem, ten);
+     Quan_li sv(ma, diem, ten, ngay, thang, nam);
     danhSach.addSV(sv);
     std::cout << "Da them sinh vien thanh cong!\n";
 }
